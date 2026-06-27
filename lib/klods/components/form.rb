@@ -4,8 +4,9 @@ module Klods
       FORM_CONTROLS = %w[input select textarea].freeze
       private_constant :FORM_CONTROLS
 
-      def form(a = nil, b = nil)
+      def form(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(tag: "form", base: "klods-form", props: props, children: children)
       end
 
@@ -80,19 +81,22 @@ module Klods
         end
       end
 
-      def select(a = nil, b = nil)
+      def select(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         inner = Core.build(tag: "select", base: "klods-select", props: props, children: children)
         Core.el("div", {"class" => "klods-select-wrapper"}, inner)
       end
 
-      def option(a = nil, b = nil)
+      def option(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.el("option", props, children)
       end
 
-      def textarea(a = nil, b = nil)
+      def textarea(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(tag: "textarea", base: "klods-textarea", props: props, children: children)
       end
 

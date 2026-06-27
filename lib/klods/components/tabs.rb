@@ -1,8 +1,9 @@
 module Klods
   module Components
     module Tabs
-      def tab_panel(a = nil, b = nil)
+      def tab_panel(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         label = props.delete(:label) || props.delete("label")
         attrs = label ? props.merge("data-tab-label" => label.to_s) : props
         Core.el("div", attrs, children)

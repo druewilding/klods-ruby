@@ -1,8 +1,9 @@
 module Klods
   module Components
     module List
-      def list(a = nil, b = nil)
+      def list(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(
           tag: "ul", base: "klods-list",
           modifiers: {flush: "klods-list--flush"},
@@ -10,8 +11,9 @@ module Klods
         )
       end
 
-      def list_item(a = nil, b = nil)
+      def list_item(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         props = props.transform_keys(&:to_s)
 
         lead = props.delete("lead")

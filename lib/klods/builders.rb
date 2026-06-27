@@ -31,5 +31,17 @@ module Klods
     def raw(html)
       Core.raw(html)
     end
+
+    private
+
+    # Captures the rendered output of a HAML/ERB block and returns it as a
+    # single-element children array containing raw HTML. Relies on ActionView's
+    # `capture` helper — returns nil outside a Rails view context so the caller
+    # falls back to its regular children argument.
+    def klods_capture(&block)
+      return nil unless block
+      return nil unless respond_to?(:capture)
+      [Core.raw(capture(&block).to_s)]
+    end
   end
 end

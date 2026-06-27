@@ -1,8 +1,9 @@
 module Klods
   module Components
     module Badge
-      def badge(a = nil, b = nil)
+      def badge(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(
           tag: "span", base: "klods-badge",
           modifiers: {
