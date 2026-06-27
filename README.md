@@ -347,10 +347,10 @@ Releases are automated with [Release Please](https://github.com/googleapis/relea
 
 Two secrets are needed in the repo settings:
 
-| Secret | Where to get it |
-|--------|----------------|
+| Secret                 | Where to get it                                                                                              |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ |
 | `RELEASE_PLEASE_TOKEN` | GitHub → Settings → Developer settings → Personal access tokens (needs `contents` and `pull-requests` write) |
-| `RUBYGEMS_API_KEY` | rubygems.org → Account → API keys |
+| `RUBYGEMS_API_KEY`     | rubygems.org → Account → API keys                                                                            |
 
 ## License
 
