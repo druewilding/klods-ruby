@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v0.2.1...klods-ruby/v1.0.0) (2026-06-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Modals are done in a different way now. Please see the documentation.
+
+### Features
+
+* Use the new signature for modals and make tabs and tooltips and toast work ([#3](https://github.com/druewilding/klods-ruby/issues/3)) ([107e88d](https://github.com/druewilding/klods-ruby/commit/107e88d82b5b1bd7267140f0b3b481de393ad24d))
+
 ## [0.2.1](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v0.2.0...klods-ruby/v0.2.1) (2026-06-27)
 
 
