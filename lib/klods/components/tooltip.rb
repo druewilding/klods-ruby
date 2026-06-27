@@ -1,8 +1,6 @@
 module Klods
   module Components
     module Tooltip
-      # tooltip(props, children) — renders the static HTML structure.
-      # Visibility is toggled by data-open via client JS; event wiring is omitted here.
       def tooltip(props, children)
         props = props.transform_keys(&:to_s)
         tip = props.delete("tip")
@@ -16,10 +14,19 @@ module Klods
           tip
         )
 
+        # Inline JS mirrors showTooltip/hideTooltip from klods-js.
+        # _kh (klods hide) is stored on the tip element to cancel pending hides.
+        show_js = "var t=this.querySelector('[role=tooltip]');if(t){clearTimeout(t._kh);t.setAttribute('data-open','')}"
+        hide_js = "var t=this.querySelector('[role=tooltip]');if(t){t._kh=setTimeout(()=>t.removeAttribute('data-open'),80)}"
+
         cls = Core.class_names("klods-tooltip", Core.resolve_class(extra_class))
         attrs = props.merge(
           "class" => cls.empty? ? nil : cls,
-          "aria-describedby" => id
+          "aria-describedby" => id,
+          "onmouseenter" => show_js,
+          "onmouseleave" => hide_js,
+          "onfocusin" => show_js,
+          "onfocusout" => "if(!this.contains(event.relatedTarget)){var t=this.querySelector('[role=tooltip]');if(t)t.removeAttribute('data-open')}"
         ).compact
 
         Core.el("span", attrs, [children, tip_node])

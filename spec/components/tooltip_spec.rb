@@ -37,4 +37,23 @@ RSpec.describe "tooltip" do
     id2 = t2.to_s.match(/id="(klods-tip-[^"]+)"/)&.captures&.first
     expect(id1).not_to eq(id2)
   end
+
+  it "wires mouseenter and mouseleave to show and hide the tip" do
+    html = tooltip({tip: "Info"}, span("?")).to_s
+    expect(html).to include("onmouseenter=")
+    expect(html).to include("onmouseleave=")
+    expect(html).to include("data-open")
+    expect(html).to include("querySelector('[role=tooltip]')")
+  end
+
+  it "wires focusin and focusout for keyboard accessibility" do
+    html = tooltip({tip: "Info"}, span("?")).to_s
+    expect(html).to include("onfocusin=")
+    expect(html).to include("onfocusout=")
+  end
+
+  it "hides with a delay on mouseleave" do
+    html = tooltip({tip: "Info"}, span("?")).to_s
+    expect(html).to include("setTimeout")
+  end
 end
