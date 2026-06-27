@@ -93,7 +93,7 @@ RSpec.describe "modal" do
   end
 
   it "modal_dismiss supports variant prop" do
-    html = modal_dismiss({ variant: "primary" }, "Confirm").to_s
+    html = modal_dismiss({variant: "primary"}, "Confirm").to_s
     expect(html).to include("klods-button--primary")
   end
 end

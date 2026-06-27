@@ -44,7 +44,7 @@ module Klods
         duration = props.key?("duration") ? props.delete("duration").to_i : 5000
 
         escaped = message.to_s.gsub(/[\\']/) { |c| "\\#{c}" }
-        toast_class = variant.to_s == "default" ? "klods-toast" : "klods-toast klods-toast--#{variant}"
+        toast_class = (variant.to_s == "default") ? "klods-toast" : "klods-toast klods-toast--#{variant}"
 
         dismiss_fn = "function _kd(e){e.setAttribute('data-dismissing','');var f=setTimeout(function(){e.remove()},200);e.addEventListener('animationend',function(){clearTimeout(f);e.remove()},{once:true})}"
         get_region = "var r=document.querySelector('.klods-toast-region');" \
@@ -56,11 +56,11 @@ module Klods
           "var b=document.createElement('span');b.className='klods-toast__body';b.textContent='#{escaped}';t.appendChild(b);" \
           "var c=document.createElement('button');c.type='button';c.className='klods-toast__close';" \
           "c.setAttribute('aria-label','Dismiss');c.onclick=function(){_kd(t)};t.appendChild(c);r.appendChild(t)"
-        auto_dismiss = duration > 0 ? ";setTimeout(function(){_kd(t)},#{duration})" : ""
+        auto_dismiss = (duration > 0) ? ";setTimeout(function(){_kd(t)},#{duration})" : ""
         onclick = "(function(){#{dismiss_fn};#{get_region};#{make_toast}#{auto_dismiss}})()"
 
         Core.build(tag: "button", base: "klods-button",
-          modifiers: { variant: ->(v) { (v && v.to_s != "default") ? "klods-button--#{v}" : nil } },
+          modifiers: {variant: ->(v) { (v && v.to_s != "default") ? "klods-button--#{v}" : nil }},
           props: props.merge("type" => "button", "onclick" => onclick),
           children: children)
       end
@@ -70,7 +70,7 @@ module Klods
         props, children = Core.normalize_args(a, b)
         onclick = "document.querySelectorAll('.klods-toast-region').forEach(function(r){r.remove()})"
         Core.build(tag: "button", base: "klods-button",
-          modifiers: { variant: ->(v) { (v && v.to_s != "default") ? "klods-button--#{v}" : nil } },
+          modifiers: {variant: ->(v) { (v && v.to_s != "default") ? "klods-button--#{v}" : nil }},
           props: props.transform_keys(&:to_s).merge("type" => "button", "onclick" => onclick),
           children: children)
       end
