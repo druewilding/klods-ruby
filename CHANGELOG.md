@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.1.0...klods-ruby/v1.2.0) (2026-06-27)
+
+
+### Features
+
+* Accept children as block ([#7](https://github.com/druewilding/klods-ruby/issues/7)) ([06919c6](https://github.com/druewilding/klods-ruby/commit/06919c64ea83a83fb08779ca960dfadf1a19fada))
+
 ## [1.1.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.0.0...klods-ruby/v1.1.0) (2026-06-27)
 
 
