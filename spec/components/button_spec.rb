@@ -31,6 +31,20 @@ RSpec.describe "button" do
     expect(button({variant: "default"}, "OK").to_s).not_to include("klods-button--default")
   end
 
+  it "renders as <a> when href is given" do
+    html = button({href: "/path"}, "Go").to_s
+    expect(html).to start_with("<a ")
+    expect(html).to include('href="/path"')
+    expect(html).to include("klods-button")
+    expect(html).not_to include('type="button"')
+  end
+
+  it "renders as <a> with variant when href is given" do
+    html = button({href: "/path", variant: "primary"}, "Go").to_s
+    expect(html).to start_with("<a ")
+    expect(html).to include("klods-button--primary")
+  end
+
   it "renders button_group" do
     node = button_group([button("A"), button("B")])
     expect(node.to_s).to include("klods-button-group")
