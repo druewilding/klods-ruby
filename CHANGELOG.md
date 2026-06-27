@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.0.0...klods-ruby/v1.1.0) (2026-06-27)
+
+
+### Features
+
+* Implement button with href ([#5](https://github.com/druewilding/klods-ruby/issues/5)) ([afc15f4](https://github.com/druewilding/klods-ruby/commit/afc15f45ef5c35d9e097463540aa6e5ba1e53864))
+
 ## [1.0.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v0.2.1...klods-ruby/v1.0.0) (2026-06-27)
 
 
