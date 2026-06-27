@@ -46,7 +46,7 @@ module Klods
       parts.join
     end
 
-    alias to_str to_s
+    alias_method :to_str, :to_s
 
     private
 
@@ -58,7 +58,7 @@ module Klods
     def flatten_children(children)
       return [] if children.nil?
       case children
-      when Array then children.flatten.filter_map { |c| c unless c.nil? || c == false || c == true }
+      when Array then children.flatten.reject { |c| c.nil? || c == false || c == true }
       when false, true then []
       else [children]
       end

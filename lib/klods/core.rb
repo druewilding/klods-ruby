@@ -28,7 +28,7 @@ module Klods
     # A Hash first arg is props; anything else (string, array, Node, nil) is children.
     def normalize_args(a = nil, b = nil)
       if a.is_a?(Hash) || a.nil?
-        [(a || {}), b]
+        [a || {}, b]
       else
         [{}, a]
       end

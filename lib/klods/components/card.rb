@@ -5,7 +5,7 @@ module Klods
         props, children = Core.normalize_args(a, b)
         Core.build(
           tag: "div", base: "klods-card",
-          modifiers: { elevated: "klods-card--elevated" },
+          modifiers: {elevated: "klods-card--elevated"},
           props: props, children: children
         )
       end

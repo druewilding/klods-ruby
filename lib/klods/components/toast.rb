@@ -23,12 +23,12 @@ module Klods
         extra_class = props.delete("class")
         cls = Core.class_names(
           "klods-toast",
-          variant && variant.to_s != "default" ? "klods-toast--#{variant}" : nil,
+          (variant && variant.to_s != "default") ? "klods-toast--#{variant}" : nil,
           Core.resolve_class(extra_class)
         )
         attrs = props.merge("role" => "status", "class" => cls.empty? ? nil : cls).compact
-        body = Core.el("span", { "class" => "klods-toast__body" }, children)
-        close_btn = Core.el("button", { "type" => "button", "class" => "klods-toast__close", "aria-label" => "Dismiss" })
+        body = Core.el("span", {"class" => "klods-toast__body"}, children)
+        close_btn = Core.el("button", {"type" => "button", "class" => "klods-toast__close", "aria-label" => "Dismiss"})
         Core.el("div", attrs, [body, close_btn])
       end
     end

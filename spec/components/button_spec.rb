@@ -12,23 +12,23 @@ RSpec.describe "button" do
   end
 
   it "allows type override" do
-    expect(button({ type: "submit" }, "Go").to_s).to include('type="submit"')
+    expect(button({type: "submit"}, "Go").to_s).to include('type="submit"')
   end
 
   it "renders primary variant" do
-    expect(button({ variant: "primary" }, "OK").to_s).to include("klods-button--primary")
+    expect(button({variant: "primary"}, "OK").to_s).to include("klods-button--primary")
   end
 
   it "renders danger variant" do
-    expect(button({ variant: "danger" }, "Delete").to_s).to include("klods-button--danger")
+    expect(button({variant: "danger"}, "Delete").to_s).to include("klods-button--danger")
   end
 
   it "renders ghost variant" do
-    expect(button({ variant: "ghost" }, "Cancel").to_s).to include("klods-button--ghost")
+    expect(button({variant: "ghost"}, "Cancel").to_s).to include("klods-button--ghost")
   end
 
   it "does not add modifier for default variant" do
-    expect(button({ variant: "default" }, "OK").to_s).not_to include("klods-button--default")
+    expect(button({variant: "default"}, "OK").to_s).not_to include("klods-button--default")
   end
 
   it "renders button_group" do

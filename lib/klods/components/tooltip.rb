@@ -12,7 +12,7 @@ module Klods
         id = _next_tooltip_id
         tip_node = Core.el(
           "span",
-          { "id" => id, "role" => "tooltip", "class" => "klods-tooltip__tip klods-tooltip__tip--#{position}" },
+          {"id" => id, "role" => "tooltip", "class" => "klods-tooltip__tip klods-tooltip__tip--#{position}"},
           tip
         )
 

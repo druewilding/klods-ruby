@@ -12,14 +12,14 @@ RSpec.describe "badge" do
   end
 
   it "renders a variant modifier" do
-    expect(badge({ variant: "success" }, "Done").to_s).to eq('<span class="klods-badge klods-badge--success">Done</span>')
+    expect(badge({variant: "success"}, "Done").to_s).to eq('<span class="klods-badge klods-badge--success">Done</span>')
   end
 
   it "does not add modifier class for default variant" do
-    expect(badge({ variant: "default" }, "X").to_s).not_to include("klods-badge--default")
+    expect(badge({variant: "default"}, "X").to_s).not_to include("klods-badge--default")
   end
 
   it "renders danger variant" do
-    expect(badge({ variant: "danger" }, "!").to_s).to include("klods-badge--danger")
+    expect(badge({variant: "danger"}, "!").to_s).to include("klods-badge--danger")
   end
 end

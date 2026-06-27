@@ -35,14 +35,14 @@ module Klods
         patched = _patch_aria_attrs(input_node, aria_attrs)
 
         field_cls = Core.class_names("klods-field", is_invalid ? "klods-field--invalid" : nil, Core.resolve_class(extra_class))
-        label_cls = "klods-label#{required ? " klods-label--required" : ""}"
+        label_cls = "klods-label#{" klods-label--required" if required}"
 
         children = [
-          Core.el("label", { "for" => id, "class" => label_cls }, label_text),
+          Core.el("label", {"for" => id, "class" => label_cls}, label_text),
           patched
         ]
-        children << Core.el("p", { "id" => help_id, "class" => "klods-help" }, help) if help
-        children << Core.el("p", { "id" => error_id, "class" => "klods-error", "role" => "alert" }, error) if error
+        children << Core.el("p", {"id" => help_id, "class" => "klods-help"}, help) if help
+        children << Core.el("p", {"id" => error_id, "class" => "klods-error", "role" => "alert"}, error) if error
 
         Core.el("div", props.merge("class" => field_cls.empty? ? nil : field_cls).compact, children)
       end
@@ -65,15 +65,15 @@ module Klods
         case type
         when "range"
           initial = props["value"] || "50"
-          Node.new("span", { "class" => cls.call("klods-input--range") }, [
+          Node.new("span", {"class" => cls.call("klods-input--range")}, [
             Node.new("input", props.merge("type" => "range"), nil),
-            Core.el("output", { "for" => id }, initial.to_s)
+            Core.el("output", {"for" => id}, initial.to_s)
           ])
         when "color"
           initial = props["value"] || "#000000"
-          Node.new("span", { "class" => cls.call("klods-input--color") }, [
+          Node.new("span", {"class" => cls.call("klods-input--color")}, [
             Node.new("input", props.merge("type" => "color"), nil),
-            Core.el("output", { "for" => id }, initial.to_s)
+            Core.el("output", {"for" => id}, initial.to_s)
           ])
         else
           Node.new("input", props.merge("type" => type, "class" => cls.call).compact)
@@ -83,7 +83,7 @@ module Klods
       def select(a = nil, b = nil)
         props, children = Core.normalize_args(a, b)
         inner = Core.build(tag: "select", base: "klods-select", props: props, children: children)
-        Core.el("div", { "class" => "klods-select-wrapper" }, inner)
+        Core.el("div", {"class" => "klods-select-wrapper"}, inner)
       end
 
       def option(a = nil, b = nil)
@@ -101,7 +101,7 @@ module Klods
         label_text = props.delete("label")
         extra_class = props.delete("class")
 
-        input_attrs = { "type" => "checkbox" }
+        input_attrs = {"type" => "checkbox"}
         %w[name value checked disabled required form autofocus].each do |key|
           val = props.delete(key)
           input_attrs[key] = val unless val.nil?
@@ -120,7 +120,7 @@ module Klods
         label_text = props.delete("label")
         extra_class = props.delete("class")
 
-        input_attrs = { "type" => "radio" }
+        input_attrs = {"type" => "radio"}
         %w[name value checked disabled required form autofocus].each do |key|
           val = props.delete(key)
           input_attrs[key] = val unless val.nil?
@@ -145,7 +145,7 @@ module Klods
         attrs["aria-labelledby"] = legend_id if legend_id
 
         group_children = []
-        group_children << Core.el("p", { "id" => legend_id, "class" => "klods-label" }, legend_text) if legend_text
+        group_children << Core.el("p", {"id" => legend_id, "class" => "klods-label"}, legend_text) if legend_text
         group_children.concat(Array(children))
 
         Core.el("div", attrs, group_children)
@@ -157,7 +157,7 @@ module Klods
         reverse = props.delete("reverse")
         extra_class = props.delete("class")
 
-        input_attrs = { "type" => "checkbox", "class" => "klods-switch__input", "role" => "switch" }
+        input_attrs = {"type" => "checkbox", "class" => "klods-switch__input", "role" => "switch"}
         %w[name value checked disabled].each do |key|
           val = props.delete(key)
           input_attrs[key] = val unless val.nil?
@@ -169,8 +169,8 @@ module Klods
           props.merge("class" => cls.empty? ? nil : cls).compact,
           [
             Node.new("input", input_attrs),
-            Core.el("span", { "class" => "klods-switch__track" }),
-            Core.el("span", { "class" => "klods-switch__label" }, label_text)
+            Core.el("span", {"class" => "klods-switch__track"}),
+            Core.el("span", {"class" => "klods-switch__label"}, label_text)
           ]
         )
       end

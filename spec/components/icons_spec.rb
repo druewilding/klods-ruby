@@ -11,14 +11,14 @@ RSpec.describe "icons" do
   end
 
   it "renders a labeled icon with aria-label and role" do
-    html = close_icon({ label: "Close dialog" }).to_s
+    html = close_icon({label: "Close dialog"}).to_s
     expect(html).to include('aria-label="Close dialog"')
     expect(html).to include('role="img"')
     expect(html).not_to include("aria-hidden")
   end
 
   it "renders small size" do
-    expect(search_icon({ size: "small" }).to_s).to include('width="12"')
+    expect(search_icon({size: "small"}).to_s).to include('width="12"')
   end
 
   it "renders medium size by default" do
@@ -26,7 +26,7 @@ RSpec.describe "icons" do
   end
 
   it "renders large size" do
-    expect(search_icon({ size: "large" }).to_s).to include('width="32"')
+    expect(search_icon({size: "large"}).to_s).to include('width="32"')
   end
 
   it "renders all 19 icon builders without error" do

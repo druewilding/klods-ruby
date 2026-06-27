@@ -3,11 +3,11 @@ module Klods
     module Button
       def button(a = nil, b = nil)
         props, children = Core.normalize_args(a, b)
-        merged = { "type" => "button" }.merge(props.transform_keys(&:to_s))
+        merged = {"type" => "button"}.merge(props.transform_keys(&:to_s))
         Core.build(
           tag: "button", base: "klods-button",
           modifiers: {
-            variant: ->(v) { v && v.to_s != "default" ? "klods-button--#{v}" : nil }
+            variant: ->(v) { (v && v.to_s != "default") ? "klods-button--#{v}" : nil }
           },
           props: merged, children: children
         )

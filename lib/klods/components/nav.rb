@@ -13,7 +13,7 @@ module Klods
         props, children = Core.normalize_args(a, b)
         Core.build(
           tag: "nav", base: "klods-nav",
-          modifiers: { collapse: "klods-nav--collapse" },
+          modifiers: {collapse: "klods-nav--collapse"},
           props: props, children: children
         )
       end
@@ -27,7 +27,7 @@ module Klods
         props, children = Core.normalize_args(a, b)
         link = Core.build(
           tag: "a", base: "klods-nav__link",
-          modifiers: { active: "klods-nav__link--active" },
+          modifiers: {active: "klods-nav__link--active"},
           props: props, children: children
         )
         Core.el("li", {}, link)
@@ -35,9 +35,9 @@ module Klods
 
       def nav_toggle(a = nil, b = nil)
         props, children = Core.normalize_args(a, b)
-        props = { "type" => "button", "aria-label" => "Toggle navigation", "class" => "klods-nav__toggle" }
+        props = {"type" => "button", "aria-label" => "Toggle navigation", "class" => "klods-nav__toggle"}
           .merge(props.transform_keys(&:to_s))
-        default_icon = Core.el("span", { "aria-hidden" => "true", "class" => "klods-icon" }, Core.raw(MENU_SVG))
+        default_icon = Core.el("span", {"aria-hidden" => "true", "class" => "klods-icon"}, Core.raw(MENU_SVG))
         Core.el("button", props, children || default_icon)
       end
 
@@ -45,7 +45,7 @@ module Klods
         props, children = Core.normalize_args(a, b)
         Core.build(
           tag: "ul", base: "klods-toc",
-          modifiers: { sub: "klods-toc--sub" },
+          modifiers: {sub: "klods-toc--sub"},
           props: props, children: children
         )
       end

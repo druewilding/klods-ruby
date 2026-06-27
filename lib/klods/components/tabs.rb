@@ -19,12 +19,12 @@ module Klods
           label = panel.attrs["data-tab-label"] || "Tab #{i + 1}"
           tab_id = Core.slug_id("#{ns}-tab", "#{label}-#{i + 1}")
           panel_id = Core.slug_id("#{ns}-panel", "#{label}-#{i + 1}")
-          { panel: panel, label: label, tab_id: tab_id, panel_id: panel_id, active: i == 0 }
+          {panel: panel, label: label, tab_id: tab_id, panel_id: panel_id, active: i == 0}
         end
 
         tab_list = Core.el(
           "div",
-          { "class" => "klods-tabs__list", "role" => "tablist" },
+          {"class" => "klods-tabs__list", "role" => "tablist"},
           items.map do |item|
             tab_attrs = {
               "type" => "button",
@@ -41,7 +41,7 @@ module Klods
 
         panel_nodes = items.map do |item|
           panel = item[:panel]
-          panel_attrs = panel.attrs.reject { |k, _| k == "data-tab-label" }
+          panel_attrs = panel.attrs.except("data-tab-label")
           extra_class = panel_attrs.delete("class")
           cls = Core.class_names("klods-tabs__panel", Core.resolve_class(extra_class))
           attrs = panel_attrs.merge(

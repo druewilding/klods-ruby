@@ -8,15 +8,15 @@ RSpec.describe "layout builders" do
   end
 
   it "renders page with sidebar modifier" do
-    expect(page({ sidebar: true }).to_s).to include("klods-page--with-sidebar")
+    expect(page({sidebar: true}).to_s).to include("klods-page--with-sidebar")
   end
 
   it "renders page with trailing sidebar" do
-    expect(page({ sidebar: true, sidebar_position: "trailing" }).to_s).to include("klods-page--sidebar-trailing")
+    expect(page({sidebar: true, sidebar_position: "trailing"}).to_s).to include("klods-page--sidebar-trailing")
   end
 
   it "renders sticky_header modifier" do
-    expect(page({ sticky_header: true }).to_s).to include("klods-page--sticky-header")
+    expect(page({sticky_header: true}).to_s).to include("klods-page--sticky-header")
   end
 
   it "renders header as a header element" do
@@ -31,7 +31,7 @@ RSpec.describe "layout builders" do
 
   it "renders content as main" do
     expect(content.to_s).to start_with("<main")
-    expect(content({ narrow: true }).to_s).to include("klods-content--narrow")
+    expect(content({narrow: true}).to_s).to include("klods-content--narrow")
   end
 
   it "renders footer" do
@@ -43,23 +43,23 @@ RSpec.describe "layout builders" do
   end
 
   it "renders stack with gap modifier" do
-    expect(stack({ gap: 4 }).to_s).to include("klods-stack--gap-4")
+    expect(stack({gap: 4}).to_s).to include("klods-stack--gap-4")
   end
 
   it "renders cluster with gap modifier" do
-    expect(cluster({ gap: 2 }).to_s).to include("klods-cluster--gap-2")
+    expect(cluster({gap: 2}).to_s).to include("klods-cluster--gap-2")
   end
 
   it "renders row with inline modifier" do
-    expect(row({ inline: true }).to_s).to include("klods-row--inline")
+    expect(row({inline: true}).to_s).to include("klods-row--inline")
   end
 
   it "renders grid with cols modifier" do
-    expect(grid({ cols: 3 }).to_s).to include("klods-grid--cols-3")
+    expect(grid({cols: 3}).to_s).to include("klods-grid--cols-3")
   end
 
   it "renders grid with fit modifier" do
-    expect(grid({ fit: true }).to_s).to include("klods-grid--fit")
+    expect(grid({fit: true}).to_s).to include("klods-grid--fit")
   end
 
   it "renders center" do

@@ -4,6 +4,6 @@ module Klods
       super.html_safe
     end
 
-    alias to_str to_s
+    alias_method :to_str, :to_s
   end
 end

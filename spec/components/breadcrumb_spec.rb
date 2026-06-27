@@ -5,8 +5,8 @@ RSpec.describe "breadcrumbs + crumb" do
 
   it "renders accessible breadcrumb nav" do
     node = breadcrumbs([
-      crumb({ href: "/" }, "Home"),
-      crumb({ href: "/products" }, "Products"),
+      crumb({href: "/"}, "Home"),
+      crumb({href: "/products"}, "Products"),
       crumb("Widget")
     ])
     html = node.to_s
@@ -17,18 +17,18 @@ RSpec.describe "breadcrumbs + crumb" do
   end
 
   it "marks the last crumb with aria-current=page" do
-    node = breadcrumbs([crumb({ href: "/" }, "Home"), crumb("Now")])
+    node = breadcrumbs([crumb({href: "/"}, "Home"), crumb("Now")])
     expect(node.to_s).to include('aria-current="page"')
   end
 
   it "does not link the last crumb" do
-    node = breadcrumbs([crumb({ href: "/" }, "Home"), crumb("Now")])
+    node = breadcrumbs([crumb({href: "/"}, "Home"), crumb("Now")])
     html = node.to_s
     expect(html.scan("<a ").length).to eq(1)
   end
 
   it "accepts a custom aria-label" do
-    node = breadcrumbs([crumb("Only")], { "aria-label" => "Navigation trail" })
+    node = breadcrumbs([crumb("Only")], {"aria-label" => "Navigation trail"})
     expect(node.to_s).to include('aria-label="Navigation trail"')
   end
 

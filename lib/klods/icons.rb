@@ -1,6 +1,6 @@
 module Klods
   module Icons
-    SIZE_PX = { "small" => 12, "medium" => 20, "large" => 32 }.freeze
+    SIZE_PX = {"small" => 12, "medium" => 20, "large" => 32}.freeze
 
     private_constant :SIZE_PX
 
@@ -11,7 +11,7 @@ module Klods
         label = props.delete(:label) || props.delete("label")
         extra_class = props.delete(:class) || props.delete("class")
         px = SIZE_PX[size] || 20
-        aria = label ? { "aria-label" => label.to_s, "role" => "img" } : { "aria-hidden" => "true" }
+        aria = label ? {"aria-label" => label.to_s, "role" => "img"} : {"aria-hidden" => "true"}
         cls = Core.class_names("klods-icon", Core.resolve_class(extra_class))
         attrs = props.transform_keys(&:to_s).merge(aria)
         attrs["class"] = cls unless cls.empty?
@@ -98,23 +98,23 @@ module Klods
     )
 
     def check_circle_icon(props = nil) = CHECK_CIRCLE_ICON.call(props)
-    def chev_down_icon(props = nil)    = CHEV_DOWN_ICON.call(props)
-    def chev_left_icon(props = nil)    = CHEV_LEFT_ICON.call(props)
-    def chev_right_icon(props = nil)   = CHEV_RIGHT_ICON.call(props)
-    def chev_up_icon(props = nil)      = CHEV_UP_ICON.call(props)
-    def close_icon(props = nil)        = CLOSE_ICON.call(props)
-    def copy_icon(props = nil)         = COPY_ICON.call(props)
+    def chev_down_icon(props = nil) = CHEV_DOWN_ICON.call(props)
+    def chev_left_icon(props = nil) = CHEV_LEFT_ICON.call(props)
+    def chev_right_icon(props = nil) = CHEV_RIGHT_ICON.call(props)
+    def chev_up_icon(props = nil) = CHEV_UP_ICON.call(props)
+    def close_icon(props = nil) = CLOSE_ICON.call(props)
+    def copy_icon(props = nil) = COPY_ICON.call(props)
     def danger_circle_icon(props = nil)= DANGER_CIRCLE_ICON.call(props)
-    def edit_icon(props = nil)         = EDIT_ICON.call(props)
+    def edit_icon(props = nil) = EDIT_ICON.call(props)
     def external_link_icon(props = nil)= EXTERNAL_LINK_ICON.call(props)
-    def eye_icon(props = nil)          = EYE_ICON.call(props)
-    def eye_off_icon(props = nil)      = EYE_OFF_ICON.call(props)
-    def info_circle_icon(props = nil)  = INFO_CIRCLE_ICON.call(props)
-    def menu_icon(props = nil)         = MENU_ICON.call(props)
-    def plus_icon(props = nil)         = PLUS_ICON.call(props)
-    def search_icon(props = nil)       = SEARCH_ICON.call(props)
-    def trash_icon(props = nil)        = TRASH_ICON.call(props)
-    def user_icon(props = nil)         = USER_ICON.call(props)
-    def warning_icon(props = nil)      = WARNING_ICON.call(props)
+    def eye_icon(props = nil) = EYE_ICON.call(props)
+    def eye_off_icon(props = nil) = EYE_OFF_ICON.call(props)
+    def info_circle_icon(props = nil) = INFO_CIRCLE_ICON.call(props)
+    def menu_icon(props = nil) = MENU_ICON.call(props)
+    def plus_icon(props = nil) = PLUS_ICON.call(props)
+    def search_icon(props = nil) = SEARCH_ICON.call(props)
+    def trash_icon(props = nil) = TRASH_ICON.call(props)
+    def user_icon(props = nil) = USER_ICON.call(props)
+    def warning_icon(props = nil) = WARNING_ICON.call(props)
   end
 end

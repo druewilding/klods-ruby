@@ -16,7 +16,7 @@ RSpec.describe "Html tag shortcuts" do
   end
 
   it "renders an anchor with href" do
-    expect(a({ href: "/path" }, "Link").to_s).to eq('<a href="/path">Link</a>')
+    expect(a({href: "/path"}, "Link").to_s).to eq('<a href="/path">Link</a>')
   end
 
   it "renders h1 through h6" do
@@ -26,7 +26,7 @@ RSpec.describe "Html tag shortcuts" do
   end
 
   it "renders img as void tag" do
-    expect(img({ src: "/logo.png", alt: "Logo" }).to_s).to eq('<img src="/logo.png" alt="Logo" />')
+    expect(img({src: "/logo.png", alt: "Logo"}).to_s).to eq('<img src="/logo.png" alt="Logo" />')
   end
 
   it "renders br as void tag" do
@@ -43,6 +43,6 @@ RSpec.describe "Html tag shortcuts" do
   end
 
   it "renders div with class" do
-    expect(div({ class: "wrapper" }, "x").to_s).to eq('<div class="wrapper">x</div>')
+    expect(div({class: "wrapper"}, "x").to_s).to eq('<div class="wrapper">x</div>')
   end
 end

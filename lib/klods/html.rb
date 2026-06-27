@@ -6,8 +6,8 @@ module Klods
   # omitted — use the klods component or Core.el("tag", ...) for the bare element.
   module Html
     %w[a abbr address article b blockquote br caption cite code col colgroup
-       data dfn div em figcaption figure h1 h2 h3 h4 h5 h6 hr i img ins
-       legend li mark ol p pre q s small span strong sub sup time u ul].each do |tag|
+      data dfn div em figcaption figure h1 h2 h3 h4 h5 h6 hr i img ins
+      legend li mark ol p pre q s small span strong sub sup time u ul].each do |tag|
       define_method(tag) do |a = nil, b = nil|
         props, children = Core.normalize_args(a, b)
         Core.el(tag, props, children)

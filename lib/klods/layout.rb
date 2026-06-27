@@ -6,7 +6,7 @@ module Klods
         tag: "div", base: "klods-page",
         modifiers: {
           sidebar: "klods-page--with-sidebar",
-          sidebar_position: ->(v) { v.to_s == "trailing" ? "klods-page--sidebar-trailing" : nil },
+          sidebar_position: ->(v) { (v.to_s == "trailing") ? "klods-page--sidebar-trailing" : nil },
           sticky_header: "klods-page--sticky-header"
         },
         props: props, children: children
@@ -27,7 +27,7 @@ module Klods
       props, children = Core.normalize_args(a, b)
       Core.build(
         tag: "main", base: "klods-content",
-        modifiers: { narrow: "klods-content--narrow" },
+        modifiers: {narrow: "klods-content--narrow"},
         props: props, children: children
       )
     end
@@ -46,7 +46,7 @@ module Klods
       props, children = Core.normalize_args(a, b)
       Core.build(
         tag: "div", base: "klods-stack",
-        modifiers: { gap: ->(v) { v ? "klods-stack--gap-#{v}" : nil } },
+        modifiers: {gap: ->(v) { v ? "klods-stack--gap-#{v}" : nil }},
         props: props, children: children
       )
     end
@@ -55,7 +55,7 @@ module Klods
       props, children = Core.normalize_args(a, b)
       Core.build(
         tag: "div", base: "klods-cluster",
-        modifiers: { gap: ->(v) { v ? "klods-cluster--gap-#{v}" : nil } },
+        modifiers: {gap: ->(v) { v ? "klods-cluster--gap-#{v}" : nil }},
         props: props, children: children
       )
     end

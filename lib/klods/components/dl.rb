@@ -5,7 +5,7 @@ module Klods
         props, children = Core.normalize_args(a, b)
         Core.build(
           tag: "dl", base: "klods-dl",
-          modifiers: { inline: "klods-dl--inline" },
+          modifiers: {inline: "klods-dl--inline"},
           props: props, children: children
         )
       end

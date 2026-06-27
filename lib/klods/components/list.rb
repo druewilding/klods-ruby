@@ -5,7 +5,7 @@ module Klods
         props, children = Core.normalize_args(a, b)
         Core.build(
           tag: "ul", base: "klods-list",
-          modifiers: { flush: "klods-list--flush" },
+          modifiers: {flush: "klods-list--flush"},
           props: props, children: children
         )
       end
@@ -14,9 +14,9 @@ module Klods
         props, children = Core.normalize_args(a, b)
         props = props.transform_keys(&:to_s)
 
-        lead  = props.delete("lead")
+        lead = props.delete("lead")
         trail = props.delete("trail")
-        href  = props.delete("href")
+        href = props.delete("href")
         extra_class = props.delete("class")
 
         li_cls = Core.class_names(
@@ -29,9 +29,9 @@ module Klods
 
         build_slots = lambda do
           parts = []
-          parts << Core.el("span", { "class" => "klods-list__lead" }, lead) if lead
-          parts << Core.el("span", { "class" => "klods-list__content" }, children)
-          parts << Core.el("span", { "class" => "klods-list__trail" }, trail) if trail
+          parts << Core.el("span", {"class" => "klods-list__lead"}, lead) if lead
+          parts << Core.el("span", {"class" => "klods-list__content"}, children)
+          parts << Core.el("span", {"class" => "klods-list__trail"}, trail) if trail
           parts
         end
 
@@ -40,8 +40,7 @@ module Klods
         if href
           link_content = has_slots ? build_slots.call : children
           return Core.el("li", li_attrs,
-            Core.el("a", { "href" => href, "class" => "klods-list__link" }, link_content)
-          )
+            Core.el("a", {"href" => href, "class" => "klods-list__link"}, link_content))
         end
 
         Core.el("li", li_attrs, has_slots ? build_slots.call : children)

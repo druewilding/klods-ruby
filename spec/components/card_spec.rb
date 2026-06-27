@@ -12,7 +12,7 @@ RSpec.describe "card" do
   end
 
   it "renders with props + children" do
-    expect(card({ elevated: true }, "Hi").to_s).to eq('<div class="klods-card klods-card--elevated">Hi</div>')
+    expect(card({elevated: true}, "Hi").to_s).to eq('<div class="klods-card klods-card--elevated">Hi</div>')
   end
 
   it "renders nested card builders" do
@@ -26,7 +26,7 @@ RSpec.describe "card" do
   end
 
   it "passes through arbitrary HTML attrs" do
-    expect(card({ id: "my-card" }, "X").to_s).to include('id="my-card"')
+    expect(card({id: "my-card"}, "X").to_s).to include('id="my-card"')
   end
 
   it "renders card_footer" do

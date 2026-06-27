@@ -41,7 +41,7 @@ module Klods
         attrs = (attrs || {}).transform_keys(&:to_s)
         extra_class = attrs.delete("class")
         cls = Core.class_names("klods-modal__close", Core.resolve_class(extra_class))
-        final_attrs = { "type" => "button", "aria-label" => "Close" }
+        final_attrs = {"type" => "button", "aria-label" => "Close"}
           .merge(attrs)
           .merge("class" => cls.empty? ? nil : cls)
           .compact

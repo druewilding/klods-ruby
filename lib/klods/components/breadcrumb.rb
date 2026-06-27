@@ -12,11 +12,11 @@ module Klods
         items = crumbs.each_with_index.map do |crumb_node, i|
           is_last = i == crumbs.length - 1
           href = crumb_node.attrs["data-crumb-href"]
-          item_attrs = crumb_node.attrs.reject { |k, _| k == "data-crumb-href" }
+          item_attrs = crumb_node.attrs.except("data-crumb-href")
           extra_class = item_attrs.delete("class")
 
           content = if href && !is_last
-            [Core.el("a", { "href" => href, "class" => "klods-breadcrumb__link" }, crumb_node.children)]
+            [Core.el("a", {"href" => href, "class" => "klods-breadcrumb__link"}, crumb_node.children)]
           else
             crumb_node.children
           end
@@ -37,7 +37,7 @@ module Klods
         nav_attrs = attrs.merge("aria-label" => aria_label)
         nav_attrs["class"] = cls unless cls.empty?
 
-        Core.el("nav", nav_attrs, Core.el("ol", { "class" => "klods-breadcrumb__list" }, items))
+        Core.el("nav", nav_attrs, Core.el("ol", {"class" => "klods-breadcrumb__list"}, items))
       end
     end
   end

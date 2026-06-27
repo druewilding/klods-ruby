@@ -3,8 +3,8 @@ require "spec_helper"
 RSpec.describe Klods::Core do
   describe ".normalize_args" do
     it "treats a hash as props" do
-      props, children = described_class.normalize_args({ class: "x" }, "text")
-      expect(props).to eq({ class: "x" })
+      props, children = described_class.normalize_args({class: "x"}, "text")
+      expect(props).to eq({class: "x"})
       expect(children).to eq("text")
     end
 
@@ -66,7 +66,7 @@ RSpec.describe Klods::Core do
     end
 
     it "filters truthy hash keys" do
-      expect(described_class.resolve_class({ foo: true, bar: false, baz: true })).to eq("foo baz")
+      expect(described_class.resolve_class({foo: true, bar: false, baz: true})).to eq("foo baz")
     end
 
     it "handles nil" do

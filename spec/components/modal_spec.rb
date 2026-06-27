@@ -16,7 +16,7 @@ RSpec.describe "modal" do
   end
 
   it "adds open attr when open: true" do
-    expect(modal({ open: true }).to_s).to match(/ open[ >]/)
+    expect(modal({open: true}).to_s).to match(/ open[ >]/)
   end
 
   it "does not add open attr by default" do

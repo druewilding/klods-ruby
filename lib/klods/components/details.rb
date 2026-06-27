@@ -5,7 +5,7 @@ module Klods
         props, children = Core.normalize_args(a, b)
         Core.build(
           tag: "details", base: "klods-details",
-          modifiers: { open: "klods-details--open" },
+          modifiers: {open: "klods-details--open"},
           props: props, children: children
         )
       end

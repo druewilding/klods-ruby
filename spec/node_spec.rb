@@ -13,15 +13,15 @@ RSpec.describe Klods::Node do
 
   it "renders void tags self-closing" do
     expect(el("br").to_s).to eq("<br />")
-    expect(el("input", { type: "text" }).to_s).to eq('<input type="text" />')
+    expect(el("input", {type: "text"}).to_s).to eq('<input type="text" />')
   end
 
   it "omits nil and false attrs" do
-    expect(el("div", { class: nil, id: false, "data-x": "y" }).to_s).to eq('<div data-x="y"></div>')
+    expect(el("div", {class: nil, id: false, "data-x": "y"}).to_s).to eq('<div data-x="y"></div>')
   end
 
   it "renders boolean attrs without a value" do
-    expect(el("input", { type: "checkbox", checked: true }).to_s).to eq('<input type="checkbox" checked />')
+    expect(el("input", {type: "checkbox", checked: true}).to_s).to eq('<input type="checkbox" checked />')
   end
 
   it "passes RawHtml through unescaped" do
