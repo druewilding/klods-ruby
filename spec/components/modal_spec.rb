@@ -45,4 +45,55 @@ RSpec.describe "modal" do
     expect(html).to include("klods-modal__close")
     expect(html).to include('type="button"')
   end
+
+  it "modal_close self-wires close behavior via inline JS" do
+    html = modal_close.to_s
+    expect(html).to include("this.closest('dialog').close()")
+  end
+
+  it "modal_trigger renders as a button with klods-button class" do
+    html = modal_trigger("Open").to_s
+    expect(html).to start_with("<button")
+    expect(html).to include("klods-button")
+    expect(html).to include("Open")
+  end
+
+  it "modal_trigger includes inline JS to open next sibling dialog" do
+    html = modal_trigger("Open").to_s
+    expect(html).to include("this.nextElementSibling.showModal()")
+  end
+
+  it "modal_trigger has type=button" do
+    expect(modal_trigger("Open").to_s).to include('type="button"')
+  end
+
+  it "modal_trigger supports variant prop" do
+    html = modal_trigger({variant: "primary"}, "Open").to_s
+    expect(html).to include("klods-button--primary")
+  end
+
+  it "modal_trigger renders children" do
+    expect(modal_trigger("Show info").to_s).to include("Show info")
+  end
+
+  it "modal_dismiss renders as a button with klods-button class" do
+    html = modal_dismiss("Confirm").to_s
+    expect(html).to start_with("<button")
+    expect(html).to include("klods-button")
+    expect(html).to include("Confirm")
+  end
+
+  it "modal_dismiss includes inline JS to close the containing dialog" do
+    html = modal_dismiss("Confirm").to_s
+    expect(html).to include("this.closest('dialog').close()")
+  end
+
+  it "modal_dismiss has type=button" do
+    expect(modal_dismiss("Confirm").to_s).to include('type="button"')
+  end
+
+  it "modal_dismiss supports variant prop" do
+    html = modal_dismiss({variant: "primary"}, "Confirm").to_s
+    expect(html).to include("klods-button--primary")
+  end
 end

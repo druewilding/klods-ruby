@@ -22,6 +22,18 @@ module Klods
           {panel: panel, label: label, tab_id: tab_id, panel_id: panel_id, active: i == 0}
         end
 
+        activate_tab_js =
+          "var c=this.closest('.klods-tabs');" \
+          "c.querySelectorAll('[role=tab]').forEach(t=>{" \
+          "var a=t===this;" \
+          "t.setAttribute('aria-selected',a);" \
+          "t.classList.toggle('klods-tabs__tab--active',a);" \
+          "a?t.removeAttribute('tabindex'):t.setAttribute('tabindex','-1')" \
+          "});" \
+          "c.querySelectorAll(':scope>.klods-tabs__panel').forEach(p=>{" \
+          "p.hidden=p.id!==this.getAttribute('aria-controls')" \
+          "})"
+
         tab_list = Core.el(
           "div",
           {"class" => "klods-tabs__list", "role" => "tablist"},
@@ -32,7 +44,8 @@ module Klods
               "id" => item[:tab_id],
               "aria-selected" => item[:active].to_s,
               "aria-controls" => item[:panel_id],
-              "class" => item[:active] ? "klods-tabs__tab klods-tabs__tab--active" : "klods-tabs__tab"
+              "class" => item[:active] ? "klods-tabs__tab klods-tabs__tab--active" : "klods-tabs__tab",
+              "onclick" => activate_tab_js
             }
             tab_attrs["tabindex"] = "-1" unless item[:active]
             Core.el("button", tab_attrs, item[:label])

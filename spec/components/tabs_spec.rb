@@ -41,4 +41,12 @@ RSpec.describe "tabs + tab_panel" do
   it "renders the outer container with klods-tabs class" do
     expect(tabs([tab_panel("Tab")]).to_s).to include('class="klods-tabs"')
   end
+
+  it "wires tab buttons with onclick for tab switching" do
+    html = tabs([tab_panel({label: "A"}, "a"), tab_panel({label: "B"}, "b")]).to_s
+    expect(html).to include("onclick=")
+    expect(html).to include("closest('.klods-tabs')")
+    expect(html).to include("aria-controls")
+    expect(html).to include("klods-tabs__panel")
+  end
 end
