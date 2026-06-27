@@ -54,6 +54,23 @@ module Klods
         Core.el("button", final_attrs)
       end
 
+      # Button that closes the containing <dialog> when clicked.
+      # Accepts the same props as button (e.g. variant:).
+      def modal_dismiss(a = nil, b = nil)
+        props, children = Core.normalize_args(a, b)
+        merged = {
+          "type" => "button",
+          "onclick" => "this.closest('dialog').close()"
+        }.merge(props.transform_keys(&:to_s))
+        Core.build(
+          tag: "button", base: "klods-button",
+          modifiers: {
+            variant: ->(v) { (v && v.to_s != "default") ? "klods-button--#{v}" : nil }
+          },
+          props: merged, children: children
+        )
+      end
+
       # Button that opens the next sibling <dialog> as a modal when clicked.
       # Accepts the same props as button (e.g. variant:).
       def modal_trigger(a = nil, b = nil)
