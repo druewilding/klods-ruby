@@ -45,4 +45,34 @@ RSpec.describe "modal" do
     expect(html).to include("klods-modal__close")
     expect(html).to include('type="button"')
   end
+
+  it "modal_close self-wires close behavior via inline JS" do
+    html = modal_close.to_s
+    expect(html).to include("this.closest('dialog').close()")
+  end
+
+  it "modal_trigger renders as a button with klods-button class" do
+    html = modal_trigger("Open").to_s
+    expect(html).to start_with("<button")
+    expect(html).to include("klods-button")
+    expect(html).to include("Open")
+  end
+
+  it "modal_trigger includes inline JS to open next sibling dialog" do
+    html = modal_trigger("Open").to_s
+    expect(html).to include("this.nextElementSibling.showModal()")
+  end
+
+  it "modal_trigger has type=button" do
+    expect(modal_trigger("Open").to_s).to include('type="button"')
+  end
+
+  it "modal_trigger supports variant prop" do
+    html = modal_trigger({variant: "primary"}, "Open").to_s
+    expect(html).to include("klods-button--primary")
+  end
+
+  it "modal_trigger renders children" do
+    expect(modal_trigger("Show info").to_s).to include("Show info")
+  end
 end
