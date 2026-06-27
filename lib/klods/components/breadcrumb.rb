@@ -1,8 +1,9 @@
 module Klods
   module Components
     module Breadcrumb
-      def crumb(a = nil, b = nil)
+      def crumb(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         href = props.delete(:href) || props.delete("href")
         attrs = href ? props.merge("data-crumb-href" => href) : props
         Core.el("li", attrs, children)

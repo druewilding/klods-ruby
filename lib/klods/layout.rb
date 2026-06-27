@@ -1,7 +1,8 @@
 module Klods
   module Layout
-    def page(a = nil, b = nil)
+    def page(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(
         tag: "div", base: "klods-page",
         modifiers: {
@@ -13,18 +14,21 @@ module Klods
       )
     end
 
-    def header(a = nil, b = nil)
+    def header(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(tag: "header", base: "klods-header", props: props, children: children)
     end
 
-    def sidebar(a = nil, b = nil)
+    def sidebar(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(tag: "aside", base: "klods-sidebar", props: props, children: children)
     end
 
-    def content(a = nil, b = nil)
+    def content(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(
         tag: "main", base: "klods-content",
         modifiers: {narrow: "klods-content--narrow"},
@@ -32,18 +36,21 @@ module Klods
       )
     end
 
-    def footer(a = nil, b = nil)
+    def footer(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(tag: "footer", base: "klods-footer", props: props, children: children)
     end
 
-    def section(a = nil, b = nil)
+    def section(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(tag: "section", base: "klods-section", props: props, children: children)
     end
 
-    def stack(a = nil, b = nil)
+    def stack(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(
         tag: "div", base: "klods-stack",
         modifiers: {gap: ->(v) { v ? "klods-stack--gap-#{v}" : nil }},
@@ -51,8 +58,9 @@ module Klods
       )
     end
 
-    def cluster(a = nil, b = nil)
+    def cluster(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(
         tag: "div", base: "klods-cluster",
         modifiers: {gap: ->(v) { v ? "klods-cluster--gap-#{v}" : nil }},
@@ -60,8 +68,9 @@ module Klods
       )
     end
 
-    def row(a = nil, b = nil)
+    def row(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(
         tag: "div", base: "klods-row",
         modifiers: {
@@ -72,8 +81,9 @@ module Klods
       )
     end
 
-    def grid(a = nil, b = nil)
+    def grid(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(
         tag: "div", base: "klods-grid",
         modifiers: {
@@ -85,13 +95,15 @@ module Klods
       )
     end
 
-    def center(a = nil, b = nil)
+    def center(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(tag: "div", base: "klods-center", props: props, children: children)
     end
 
-    def spread(a = nil, b = nil)
+    def spread(a = nil, b = nil, &block)
       props, children = Core.normalize_args(a, b)
+      children = klods_capture(&block) if block
       Core.build(tag: "div", base: "klods-spread", props: props, children: children)
     end
 

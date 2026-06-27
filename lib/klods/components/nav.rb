@@ -9,8 +9,9 @@ module Klods
 
       private_constant :MENU_SVG
 
-      def nav(a = nil, b = nil)
+      def nav(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(
           tag: "nav", base: "klods-nav",
           modifiers: {collapse: "klods-nav--collapse"},
@@ -18,13 +19,15 @@ module Klods
         )
       end
 
-      def nav_list(a = nil, b = nil)
+      def nav_list(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(tag: "ul", base: "klods-nav__list", props: props, children: children)
       end
 
-      def nav_link(a = nil, b = nil)
+      def nav_link(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         link = Core.build(
           tag: "a", base: "klods-nav__link",
           modifiers: {active: "klods-nav__link--active"},
@@ -33,16 +36,18 @@ module Klods
         Core.el("li", {}, link)
       end
 
-      def nav_toggle(a = nil, b = nil)
+      def nav_toggle(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         props = {"type" => "button", "aria-label" => "Toggle navigation", "class" => "klods-nav__toggle"}
           .merge(props.transform_keys(&:to_s))
         default_icon = Core.el("span", {"aria-hidden" => "true", "class" => "klods-icon"}, Core.raw(MENU_SVG))
         Core.el("button", props, children || default_icon)
       end
 
-      def toc(a = nil, b = nil)
+      def toc(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(
           tag: "ul", base: "klods-toc",
           modifiers: {sub: "klods-toc--sub"},
@@ -50,13 +55,15 @@ module Klods
         )
       end
 
-      def toc_item(a = nil, b = nil)
+      def toc_item(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.el("li", props, children)
       end
 
-      def toc_link(a = nil, b = nil)
+      def toc_link(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.el("a", props, children)
       end
     end

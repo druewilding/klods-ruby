@@ -44,6 +44,51 @@ puts card([
 ])
 ```
 
+### Rails (HAML)
+
+Add `gem "haml-rails"` to your Gemfile. The Railtie wires all builders into every view automatically.
+
+In HAML, builders accept a `do` block whose indented content becomes the children — the component hierarchy mirrors the indentation:
+
+```haml
+- content_for :title, "Home"
+- content_for :sidebar, toc([toc_item(toc_link({ href: "#intro" }, "Introduction")), toc_item(toc_link({ href: "#usage" }, "Usage"))])
+
+= stack({ gap: 6 }) do
+  = prose do
+    = h1({ id: "intro" }, "Welcome")
+    = lead("Build pages with Ruby.")
+  = card do
+    = card_title("Getting started")
+    = card_body do
+      = p do
+        = "Install the gem, then "
+        = inline_code("bundle exec rails server")
+        = "."
+```
+
+**One rule**: `=` output lines must always be a single Ruby expression — no multi-line arrays. Use `do` blocks for nesting, and `- var =` for any intermediate values you want to name:
+
+```haml
+- edit_path = inline_code("app/views/welcome/index.html.haml")
+= prose do
+  = h1("Welcome")
+  = p do
+    = "Edit "
+    = edit_path
+    = " to change this page."
+```
+
+Blocks and the array API are interchangeable — use whichever fits the situation:
+
+```haml
+- actions = cluster({ gap: 2 }, [button({ variant: "primary" }, "Save"), button("Cancel")])
+= stack({ gap: 4 }) do
+  = prose do
+    = h1("Title")
+  = actions
+```
+
 ### Rails (ERB)
 
 Add to an initializer or `application.rb` — the Railtie wires everything up automatically:

@@ -1,8 +1,9 @@
 module Klods
   module Components
     module Modal
-      def modal(a = nil, b = nil)
+      def modal(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         props = props.transform_keys(&:to_s)
         open_attr = props.delete("open")
         extra_class = props.delete("class")
@@ -12,28 +13,33 @@ module Klods
         Core.el("dialog", attrs, children)
       end
 
-      def modal_panel(a = nil, b = nil)
+      def modal_panel(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(tag: "div", base: "klods-modal__panel", props: props, children: children)
       end
 
-      def modal_header(a = nil, b = nil)
+      def modal_header(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(tag: "div", base: "klods-modal__header", props: props, children: children)
       end
 
-      def modal_title(a = nil, b = nil)
+      def modal_title(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(tag: "h2", base: "klods-modal__title", props: props, children: children)
       end
 
-      def modal_body(a = nil, b = nil)
+      def modal_body(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(tag: "div", base: "klods-modal__body", props: props, children: children)
       end
 
-      def modal_actions(a = nil, b = nil)
+      def modal_actions(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(tag: "div", base: "klods-modal__actions", props: props, children: children)
       end
 
@@ -56,8 +62,9 @@ module Klods
 
       # Button that closes the containing <dialog> when clicked.
       # Accepts the same props as button (e.g. variant:).
-      def modal_dismiss(a = nil, b = nil)
+      def modal_dismiss(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         merged = {
           "type" => "button",
           "onclick" => "this.closest('dialog').close()"
@@ -73,8 +80,9 @@ module Klods
 
       # Button that opens the next sibling <dialog> as a modal when clicked.
       # Accepts the same props as button (e.g. variant:).
-      def modal_trigger(a = nil, b = nil)
+      def modal_trigger(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         merged = {
           "type" => "button",
           "onclick" => "this.nextElementSibling.showModal()"

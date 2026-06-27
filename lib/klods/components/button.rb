@@ -5,8 +5,9 @@ module Klods
         variant: ->(v) { (v && v.to_s != "default") ? "klods-button--#{v}" : nil }
       }.freeze
 
-      def button(a = nil, b = nil)
+      def button(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         str_props = props.transform_keys(&:to_s)
         if str_props.key?("href")
           Core.build(tag: "a", base: "klods-button", modifiers: BUTTON_MODIFIERS, props: str_props, children: children)
@@ -18,8 +19,9 @@ module Klods
         end
       end
 
-      def button_group(a = nil, b = nil)
+      def button_group(a = nil, b = nil, &block)
         props, children = Core.normalize_args(a, b)
+        children = klods_capture(&block) if block
         Core.build(tag: "div", base: "klods-button-group", props: props, children: children)
       end
     end
