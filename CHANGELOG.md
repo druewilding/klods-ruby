@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.2.0...klods-ruby/v1.3.0) (2026-06-28)
+
+
+### Features
+
+* Add a Klods::FormBuilder and useful shortcuts for use with Rails ([#10](https://github.com/druewilding/klods-ruby/issues/10)) ([6350be4](https://github.com/druewilding/klods-ruby/commit/6350be42df0333dae7f41cbe7732b7d0deec83c1))
+
 ## [1.2.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.1.0...klods-ruby/v1.2.0) (2026-06-27)
 
 
