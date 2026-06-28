@@ -19,6 +19,7 @@ module Klods
     include Klods::Components::Modal
     include Klods::Components::Nav
     include Klods::Components::Prose
+    include Klods::Components::Toc
     include Klods::Components::Table
     include Klods::Components::Tabs
     include Klods::Components::Toast
