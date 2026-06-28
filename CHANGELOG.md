@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.1](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.3.0...klods-ruby/v1.3.1) (2026-06-28)
+
+
+### Bug Fixes
+
+* Add proper klods_textarea and klods_select methods ([#15](https://github.com/druewilding/klods-ruby/issues/15)) ([816bd09](https://github.com/druewilding/klods-ruby/commit/816bd09b8270645990b632f623907fcf5a306ee4))
+* Wire up textarea and select through Klods::FormBuilder ([#13](https://github.com/druewilding/klods-ruby/issues/13)) ([3195645](https://github.com/druewilding/klods-ruby/commit/31956455c490daa26f144fe177eb1de09c0b29a2))
+
 ## [1.3.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.2.0...klods-ruby/v1.3.0) (2026-06-28)
 
 
