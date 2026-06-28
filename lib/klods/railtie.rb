@@ -1,3 +1,5 @@
+require "klods/form_builder"
+
 module Klods
   class Railtie < Rails::Railtie
     initializer "klods.include_helpers" do
