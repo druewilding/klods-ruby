@@ -6,6 +6,7 @@ module Klods
     # = f.klods_field :email, label: "Email", type: :email, autocomplete: "email"
     # = f.klods_field :password, label: "Password", type: :password, required: true
     # = f.klods_field :bio, label: "Bio", type: :textarea
+    # = f.klods_field :role, label: "Role", type: :select, choices: [["Admin", "admin"], ["User", "user"]]
     # = f.klods_field :name, label: "Name", help: "Your display name"
     def klods_field(method, label: nil, type: :text, help: nil, required: false, **options)
       errors = Array(object&.errors&.[](method))
@@ -25,6 +26,9 @@ module Klods
 
       input_html = if type == :textarea
         render_klods_textarea(method, class: "klods-input", **aria, **options)
+      elsif type == :select
+        choices = options.delete(:choices) || []
+        render_klods_select(method, choices, class: "klods-input", **aria, **options)
       else
         send(input_helper_for(type), method, class: "klods-input", **aria, **options)
       end
@@ -68,6 +72,15 @@ module Klods
       name = @object_name.present? ? "#{@object_name}[#{method}]" : method.to_s
       value = object&.public_send(method).to_s
       @template.content_tag(:textarea, value, name: name, id: field_id(method), **options)
+    end
+
+    # FormBuilder#select calls @template.select(...), which is shadowed by the klods
+    # select builder. Build the select directly using options_for_select + content_tag.
+    def render_klods_select(method, choices, **options)
+      name = @object_name.present? ? "#{@object_name}[#{method}]" : method.to_s
+      selected = object&.public_send(method)
+      options_html = @template.options_for_select(choices, selected)
+      @template.content_tag(:select, options_html, name: name, id: field_id(method), **options)
     end
   end
 end
