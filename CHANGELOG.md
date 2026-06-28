@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.4.0...klods-ruby/v1.5.0) (2026-06-28)
+
+
+### Features
+
+* Add link component with plain modifier ([#19](https://github.com/druewilding/klods-ruby/issues/19)) ([c5242c5](https://github.com/druewilding/klods-ruby/commit/c5242c59e1ce66e9295e19cbc032dbc93b795e07))
+
 ## [1.4.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.3.1...klods-ruby/v1.4.0) (2026-06-28)
 
 
