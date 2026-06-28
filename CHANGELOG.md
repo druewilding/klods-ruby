@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.5.1...klods-ruby/v1.6.0) (2026-06-28)
+
+
+### Features
+
+* Enable active property on toc links ([#23](https://github.com/druewilding/klods-ruby/issues/23)) ([130680b](https://github.com/druewilding/klods-ruby/commit/130680be51c85cf7b719dc0bb7eed2c62b103f3f))
+
 ## [1.5.1](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.5.0...klods-ruby/v1.5.1) (2026-06-28)
 
 
