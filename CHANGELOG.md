@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.3.1...klods-ruby/v1.4.0) (2026-06-28)
+
+
+### Features
+
+* Enable narrow stack ([#17](https://github.com/druewilding/klods-ruby/issues/17)) ([6da06b8](https://github.com/druewilding/klods-ruby/commit/6da06b80c76202d6356855d92a730e4ca186dc60))
+
 ## [1.3.1](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.3.0...klods-ruby/v1.3.1) (2026-06-28)
 
 
