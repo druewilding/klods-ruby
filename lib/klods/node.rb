@@ -52,7 +52,16 @@ module Klods
 
     def normalize_attrs(attrs)
       return {} if attrs.nil?
-      attrs.transform_keys(&:to_s)
+      result = {}
+      attrs.each do |key, value|
+        k = key.to_s
+        if (k == "data" || k == "aria") && value.is_a?(Hash)
+          value.each { |sub_k, sub_v| result["#{k}-#{sub_k.to_s.tr("_", "-")}"] = sub_v }
+        else
+          result[k] = value
+        end
+      end
+      result
     end
 
     def flatten_children(children)

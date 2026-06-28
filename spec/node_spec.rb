@@ -40,4 +40,14 @@ RSpec.describe Klods::Node do
     node = Klods::Node.new("br", {}, ["oops"])
     expect(node.to_s).to eq("<br />")
   end
+
+  it "expands data hash into hyphenated data-* attributes" do
+    expect(el("div", {data: {controller: "pending", target_value: "x"}}).to_s)
+      .to eq('<div data-controller="pending" data-target-value="x"></div>')
+  end
+
+  it "expands aria hash into hyphenated aria-* attributes" do
+    expect(el("button", {aria: {label: "Close", expanded: "false"}}).to_s)
+      .to eq('<button aria-label="Close" aria-expanded="false"></button>')
+  end
 end
