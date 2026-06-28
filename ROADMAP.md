@@ -6,7 +6,7 @@ Ideas and known gaps, roughly in priority order. Not a commitment — just an ho
 
 ## ✅ Rails FormBuilder integration
 
-`Klods::FormBuilder` is available as of v1.2.0. See the README for usage.
+`Klods::FormBuilder` is available as of v1.3.0. See the README for usage.
 
 ---
 
