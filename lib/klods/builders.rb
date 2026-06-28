@@ -14,6 +14,7 @@ module Klods
     include Klods::Components::Details
     include Klods::Components::Dl
     include Klods::Components::Form
+    include Klods::Components::Link
     include Klods::Components::List
     include Klods::Components::Modal
     include Klods::Components::Nav
