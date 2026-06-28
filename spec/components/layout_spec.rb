@@ -46,6 +46,10 @@ RSpec.describe "layout builders" do
     expect(stack({gap: 4}).to_s).to include("klods-stack--gap-4")
   end
 
+  it "renders stack with narrow modifier" do
+    expect(stack({narrow: true}).to_s).to include("klods-stack--narrow")
+  end
+
   it "renders cluster with gap modifier" do
     expect(cluster({gap: 2}).to_s).to include("klods-cluster--gap-2")
   end
