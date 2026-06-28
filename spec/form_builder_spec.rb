@@ -63,6 +63,20 @@ RSpec.describe Klods::FormBuilder do
       expect(html).to include("<textarea")
     end
 
+    it "renders a select with choices" do
+      html = builder.klods_field(:name, type: :select, choices: [["Alice", "alice"], ["Bob", "bob"]])
+      expect(html).to include("<select")
+      expect(html).to include('class="klods-input"')
+      expect(html).to include("Alice")
+      expect(html).to include("Bob")
+    end
+
+    it "marks the selected option from the object value" do
+      record.name = "bob"
+      html = builder.klods_field(:name, type: :select, choices: [["Alice", "alice"], ["Bob", "bob"]])
+      expect(html).to include('selected="selected" value="bob"')
+    end
+
     it "shows help text when provided" do
       html = builder.klods_field(:email, type: :email, help: "Never shared with anyone")
       expect(html).to include('class="klods-help"')

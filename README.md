@@ -259,18 +259,20 @@ Then use `f.klods_field` and `f.klods_submit` in your views:
   = stack({ gap: 4 }) do
     = f.klods_field :email, label: "Email", type: :email, autocomplete: "email"
     = f.klods_field :password, label: "Password", type: :password, required: true
+    = f.klods_field :role, label: "Role", type: :select, choices: [["Admin", "admin"], ["User", "user"]]
     = f.klods_field :bio, label: "Bio", type: :textarea, help: "Tell us about yourself"
     = f.klods_submit "Sign up"
 ```
 
 `klods_field` options:
 
-| Option      | Default                  | Description                                                                                                     |
-| ----------- | ------------------------ | --------------------------------------------------------------------------------------------------------------- |
-| `label:`    | humanized attribute name | Label text                                                                                                      |
-| `type:`     | `:text`                  | Input type: `:text`, `:email`, `:password`, `:tel`, `:url`, `:number`, `:date`, `:time`, `:search`, `:textarea` |
-| `help:`     | —                        | Help text shown below the input                                                                                 |
-| `required:` | `false`                  | Adds `klods-label--required` to the label                                                                       |
+| Option      | Default                  | Description                                                                                                                |
+| ----------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `label:`    | humanized attribute name | Label text                                                                                                                 |
+| `type:`     | `:text`                  | Input type: `:text`, `:email`, `:password`, `:tel`, `:url`, `:number`, `:date`, `:time`, `:search`, `:textarea`, `:select` |
+| `choices:`  | —                        | Required when `type: :select`. Array of `["Label", value]` pairs (or plain values)                                         |
+| `help:`     | —                        | Help text shown below the input                                                                                            |
+| `required:` | `false`                  | Adds `klods-label--required` to the label                                                                                  |
 
 Validation errors are read from `object.errors` automatically — no need to pass them manually. When errors are present, the field gets `klods-field--invalid`, the error message is shown with `klods-error`, and `aria-invalid="true"` is set on the input.
 
