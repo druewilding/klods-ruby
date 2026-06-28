@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.5.0...klods-ruby/v1.5.1) (2026-06-28)
+
+
+### Bug Fixes
+
+* Support data-* and aria-* nested hash attributes ([#21](https://github.com/druewilding/klods-ruby/issues/21)) ([2237799](https://github.com/druewilding/klods-ruby/commit/2237799d2659292e4e2b618d0a5c009899cfafb4))
+
 ## [1.5.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.4.0...klods-ruby/v1.5.0) (2026-06-28)
 
 
