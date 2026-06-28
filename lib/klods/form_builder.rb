@@ -26,7 +26,7 @@ module Klods
       @template.content_tag(:div, class: field_cls) do
         label(method, label || method.to_s.humanize, class: label_cls) +
           send(input_helper_for(type), method, class: "klods-input", **aria, **options) +
-          (help && !is_invalid ? @template.content_tag(:p, help, id: help_id, class: "klods-help") : "".html_safe) +
+          ((help && !is_invalid) ? @template.content_tag(:p, help, id: help_id, class: "klods-help") : "".html_safe) +
           (error_msg ? @template.content_tag(:p, error_msg, id: error_id, class: "klods-error", role: "alert") : "".html_safe)
       end
     end

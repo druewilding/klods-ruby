@@ -5,6 +5,7 @@ require "klods/form_builder"
 
 class TestRecord
   include ActiveModel::Model
+
   attr_accessor :email, :password, :name, :bio
 
   def self.model_name
