@@ -53,7 +53,7 @@ module Klods
       children = klods_capture(&block) if block
       Core.build(
         tag: "div", base: "klods-stack",
-        modifiers: {gap: ->(v) { v ? "klods-stack--gap-#{v}" : nil }},
+        modifiers: {gap: ->(v) { v ? "klods-stack--gap-#{v}" : nil }, narrow: "klods-stack--narrow"},
         props: props, children: children
       )
     end
