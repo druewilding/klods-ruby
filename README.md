@@ -236,6 +236,44 @@ form([
 - Adds `aria-describedby` pointing to the help or error text
 - Adds `aria-invalid="true"` on the input when an error is present
 
+### Rails forms with `Klods::FormBuilder`
+
+In a Rails app, use `Klods::FormBuilder` to get fully wired klods form fields from a single call — label, input, error message, help text, and all aria attributes generated automatically.
+
+Set it as the default once in `config/application.rb`:
+
+```ruby
+config.action_view.default_form_builder = "Klods::FormBuilder"
+```
+
+Or specify it per form:
+
+```haml
+= form_with model: @user, builder: Klods::FormBuilder do |f|
+```
+
+Then use `f.klods_field` and `f.klods_submit` in your views:
+
+```haml
+= form_with model: resource, as: resource_name, url: registration_path(resource_name) do |f|
+  = stack({ gap: 4 }) do
+    = f.klods_field :email, label: "Email", type: :email, autocomplete: "email"
+    = f.klods_field :password, label: "Password", type: :password, required: true
+    = f.klods_field :bio, label: "Bio", type: :textarea, help: "Tell us about yourself"
+    = f.klods_submit "Sign up"
+```
+
+`klods_field` options:
+
+| Option      | Default                  | Description                                                                                                     |
+| ----------- | ------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| `label:`    | humanized attribute name | Label text                                                                                                      |
+| `type:`     | `:text`                  | Input type: `:text`, `:email`, `:password`, `:tel`, `:url`, `:number`, `:date`, `:time`, `:search`, `:textarea` |
+| `help:`     | —                        | Help text shown below the input                                                                                 |
+| `required:` | `false`                  | Adds `klods-label--required` to the label                                                                       |
+
+Validation errors are read from `object.errors` automatically — no need to pass them manually. When errors are present, the field gets `klods-field--invalid`, the error message is shown with `klods-error`, and `aria-invalid="true"` is set on the input.
+
 ### Interactive
 
 ```ruby
