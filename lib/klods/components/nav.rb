@@ -44,7 +44,6 @@ module Klods
         default_icon = Core.el("span", {"aria-hidden" => "true", "class" => "klods-icon"}, Core.raw(MENU_SVG))
         Core.el("button", props, children || default_icon)
       end
-
     end
   end
 end
