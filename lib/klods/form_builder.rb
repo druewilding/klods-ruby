@@ -23,9 +23,15 @@ module Klods
       field_cls = ["klods-field", ("klods-field--invalid" if is_invalid)].compact.join(" ")
       label_cls = ["klods-label", ("klods-label--required" if required)].compact.join(" ")
 
+      input_html = if type == :textarea
+        render_klods_textarea(method, class: "klods-input", **aria, **options)
+      else
+        send(input_helper_for(type), method, class: "klods-input", **aria, **options)
+      end
+
       @template.content_tag(:div, class: field_cls) do
         label(method, label || method.to_s.humanize, class: label_cls) +
-          send(input_helper_for(type), method, class: "klods-input", **aria, **options) +
+          input_html +
           ((help && !is_invalid) ? @template.content_tag(:p, help, id: help_id, class: "klods-help") : "".html_safe) +
           (error_msg ? @template.content_tag(:p, error_msg, id: error_id, class: "klods-error", role: "alert") : "".html_safe)
       end
@@ -52,9 +58,16 @@ module Klods
         number: :number_field,
         date: :date_field,
         time: :time_field,
-        search: :search_field,
-        textarea: :text_area
+        search: :search_field
       }.fetch(type, :text_field)
+    end
+
+    # Rails 8 FormBuilder#text_area calls @template.textarea(...), which is shadowed
+    # by the klods textarea builder. Build the textarea directly to avoid the conflict.
+    def render_klods_textarea(method, **options)
+      name = @object_name.present? ? "#{@object_name}[#{method}]" : method.to_s
+      value = object&.public_send(method).to_s
+      @template.content_tag(:textarea, value, name: name, id: field_id(method), **options)
     end
   end
 end
