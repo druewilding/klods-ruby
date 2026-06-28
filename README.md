@@ -252,27 +252,31 @@ Or specify it per form:
 = form_with model: @user, builder: Klods::FormBuilder do |f|
 ```
 
-Then use `f.klods_field` and `f.klods_submit` in your views:
+Then use `f.klods_field`, `f.klods_textarea`, `f.klods_select`, and `f.klods_submit` in your views:
 
 ```haml
 = form_with model: resource, as: resource_name, url: registration_path(resource_name) do |f|
   = stack({ gap: 4 }) do
     = f.klods_field :email, label: "Email", type: :email, autocomplete: "email"
     = f.klods_field :password, label: "Password", type: :password, required: true
-    = f.klods_field :role, label: "Role", type: :select, choices: [["Admin", "admin"], ["User", "user"]]
-    = f.klods_field :bio, label: "Bio", type: :textarea, help: "Tell us about yourself"
+    = f.klods_select :role, [["Admin", "admin"], ["User", "user"]], label: "Role"
+    = f.klods_textarea :bio, label: "Bio", help: "Tell us about yourself"
     = f.klods_submit "Sign up"
 ```
 
-`klods_field` options:
+**`f.klods_field`** — for `<input>` elements. `type:` accepts `:text` (default), `:email`, `:password`, `:tel`, `:url`, `:number`, `:date`, `:time`, `:search`.
 
-| Option      | Default                  | Description                                                                                                                |
-| ----------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| `label:`    | humanized attribute name | Label text                                                                                                                 |
-| `type:`     | `:text`                  | Input type: `:text`, `:email`, `:password`, `:tel`, `:url`, `:number`, `:date`, `:time`, `:search`, `:textarea`, `:select` |
-| `choices:`  | —                        | Required when `type: :select`. Array of `["Label", value]` pairs (or plain values)                                         |
-| `help:`     | —                        | Help text shown below the input                                                                                            |
-| `required:` | `false`                  | Adds `klods-label--required` to the label                                                                                  |
+**`f.klods_textarea`** — renders a `<textarea>` with `klods-textarea` class.
+
+**`f.klods_select`** — renders a `<select>` with `klods-select` class, wrapped in a `klods-select-wrapper` div. Pass choices as the second positional argument (array of `["Label", value]` pairs or plain values).
+
+All three share the same keyword options:
+
+| Option      | Default                  | Description                               |
+| ----------- | ------------------------ | ----------------------------------------- |
+| `label:`    | humanized attribute name | Label text                                |
+| `help:`     | —                        | Help text shown below the input           |
+| `required:` | `false`                  | Adds `klods-label--required` to the label |
 
 Validation errors are read from `object.errors` automatically — no need to pass them manually. When errors are present, the field gets `klods-field--invalid`, the error message is shown with `klods-error`, and `aria-invalid="true"` is set on the input.
 

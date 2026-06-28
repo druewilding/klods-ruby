@@ -6,7 +6,7 @@ require "klods/form_builder"
 class TestRecord
   include ActiveModel::Model
 
-  attr_accessor :email, :password, :name, :bio
+  attr_accessor :email, :password, :name, :bio, :role
 
   def self.model_name
     ActiveModel::Name.new(self, nil, "TestRecord")
@@ -58,25 +58,6 @@ RSpec.describe Klods::FormBuilder do
       expect(html).to include('type="password"')
     end
 
-    it "renders a textarea" do
-      html = builder.klods_field(:bio, type: :textarea)
-      expect(html).to include("<textarea")
-    end
-
-    it "renders a select with choices" do
-      html = builder.klods_field(:name, type: :select, choices: [["Alice", "alice"], ["Bob", "bob"]])
-      expect(html).to include("<select")
-      expect(html).to include('class="klods-input"')
-      expect(html).to include("Alice")
-      expect(html).to include("Bob")
-    end
-
-    it "marks the selected option from the object value" do
-      record.name = "bob"
-      html = builder.klods_field(:name, type: :select, choices: [["Alice", "alice"], ["Bob", "bob"]])
-      expect(html).to include('selected="selected" value="bob"')
-    end
-
     it "shows help text when provided" do
       html = builder.klods_field(:email, type: :email, help: "Never shared with anyone")
       expect(html).to include('class="klods-help"')
@@ -120,6 +101,94 @@ RSpec.describe Klods::FormBuilder do
       it "does not render help text when there is an error" do
         html = builder.klods_field(:email, type: :email, help: "hint")
         expect(html).not_to include("klods-help")
+      end
+    end
+  end
+
+  describe "#klods_textarea" do
+    it "wraps in a klods-field div" do
+      html = builder.klods_textarea(:bio)
+      expect(html).to include('class="klods-field"')
+    end
+
+    it "renders a textarea element with klods-textarea class" do
+      html = builder.klods_textarea(:bio)
+      expect(html).to include("<textarea")
+      expect(html).to include('class="klods-textarea"')
+    end
+
+    it "does not use klods-input class" do
+      html = builder.klods_textarea(:bio)
+      expect(html).not_to include("klods-input")
+    end
+
+    it "shows help text" do
+      html = builder.klods_textarea(:bio, help: "Max 500 characters")
+      expect(html).to include("Max 500 characters")
+    end
+
+    context "when the object has validation errors" do
+      before { record.errors.add(:bio, "is too long") }
+
+      it "adds the invalid modifier" do
+        html = builder.klods_textarea(:bio)
+        expect(html).to include("klods-field--invalid")
+      end
+
+      it "adds aria-invalid to the textarea" do
+        html = builder.klods_textarea(:bio)
+        expect(html).to include('aria-invalid="true"')
+      end
+    end
+  end
+
+  describe "#klods_select" do
+    let(:choices) { [["Alice", "alice"], ["Bob", "bob"]] }
+
+    it "wraps in a klods-field div" do
+      html = builder.klods_select(:name, choices)
+      expect(html).to include('class="klods-field"')
+    end
+
+    it "wraps the select in a klods-select-wrapper div" do
+      html = builder.klods_select(:name, choices)
+      expect(html).to include('class="klods-select-wrapper"')
+    end
+
+    it "renders a select element with klods-select class" do
+      html = builder.klods_select(:name, choices)
+      expect(html).to include("<select")
+      expect(html).to include('class="klods-select"')
+    end
+
+    it "does not use klods-input class" do
+      html = builder.klods_select(:name, choices)
+      expect(html).not_to include("klods-input")
+    end
+
+    it "renders the choices as options" do
+      html = builder.klods_select(:name, choices)
+      expect(html).to include("Alice")
+      expect(html).to include("Bob")
+    end
+
+    it "marks the selected option from the object value" do
+      record.name = "bob"
+      html = builder.klods_select(:name, choices)
+      expect(html).to include('selected="selected" value="bob"')
+    end
+
+    context "when the object has validation errors" do
+      before { record.errors.add(:name, "is invalid") }
+
+      it "adds the invalid modifier" do
+        html = builder.klods_select(:name, choices)
+        expect(html).to include("klods-field--invalid")
+      end
+
+      it "adds aria-invalid to the select" do
+        html = builder.klods_select(:name, choices)
+        expect(html).to include('aria-invalid="true"')
       end
     end
   end
