@@ -56,10 +56,25 @@ RSpec.describe "form components" do
       expect(html).to include("30")
     end
 
-    it "renders a color input with output" do
+    it "renders a color input with a hex text field" do
       html = input(type: "color", value: "#ff0000").to_s
       expect(html).to include("klods-input--color")
-      expect(html).to include("<output")
+      expect(html).to include('type="color"')
+      expect(html).to include('class="klods-color-hex"')
+      expect(html).to include('value="#ff0000"')
+      expect(html).not_to include("<output")
+    end
+
+    it "wires inline oninput handlers so picker and hex field stay in sync" do
+      html = input(type: "color", value: "#ff0000").to_s
+      expect(html).to include("klods-color-hex")
+      expect(html).to include("closest('.klods-input--color')")
+    end
+
+    it "appends a user-provided oninput to the color picker handler" do
+      html = input(type: "color", value: "#ff0000", oninput: "myHandler()").to_s
+      expect(html).to include("myHandler()")
+      expect(html).to include("klods-color-hex")
     end
   end
 

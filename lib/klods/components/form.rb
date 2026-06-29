@@ -72,9 +72,20 @@ module Klods
           ])
         when "color"
           initial = props["value"] || "#000000"
+          user_oninput = props.delete("oninput")
+          color_oninput = "var h=this.closest('.klods-input--color').querySelector('.klods-color-hex');if(h)h.value=this.value;"
+          color_oninput += user_oninput if user_oninput
           Node.new("span", {"class" => cls.call("klods-input--color")}, [
-            Node.new("input", props.merge("type" => "color"), nil),
-            Core.el("output", {"for" => id}, initial.to_s)
+            Node.new("input", props.merge("type" => "color", "oninput" => color_oninput), nil),
+            Node.new("input", {
+              "type" => "text",
+              "class" => "klods-color-hex",
+              "value" => initial.to_s,
+              "maxlength" => "7",
+              "spellcheck" => "false",
+              "aria-label" => "Hex color value",
+              "oninput" => "if(/^#[0-9a-fA-F]{6}$/.test(this.value)){var c=this.closest('.klods-input--color').querySelector('[type=color]');if(c)c.value=this.value}"
+            }, nil)
           ])
         else
           Node.new("input", props.merge("type" => type, "class" => cls.call).compact)
