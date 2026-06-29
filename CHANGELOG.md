@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.6.0...klods-ruby/v1.7.0) (2026-06-29)
+
+
+### Features
+
+* Make color input fields have editable hex codes ([#25](https://github.com/druewilding/klods-ruby/issues/25)) ([95da86b](https://github.com/druewilding/klods-ruby/commit/95da86b467cdb0ddce978f56b5d0b50220481f0d))
+
 ## [1.6.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.5.1...klods-ruby/v1.6.0) (2026-06-28)
 
 
