@@ -22,4 +22,12 @@ RSpec.describe "badge" do
   it "renders danger variant" do
     expect(badge({variant: "danger"}, "!").to_s).to include("klods-badge--danger")
   end
+
+  it "renders warning variant" do
+    expect(badge({variant: "warning"}, "Pending").to_s).to include("klods-badge--warning")
+  end
+
+  it "renders info variant" do
+    expect(badge({variant: "info"}, "Note").to_s).to include("klods-badge--info")
+  end
 end
