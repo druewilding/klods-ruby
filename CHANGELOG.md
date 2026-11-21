@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.7.0...klods-ruby/v1.8.0) (2026-11-21)
+
+
+### Features
+
+* Add the status builder ([#28](https://github.com/druewilding/klods-ruby/issues/28)) ([cac7232](https://github.com/druewilding/klods-ruby/commit/cac7232eac8c984be47dd6ed9868719c57cd3450))
+
 ## [1.7.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.6.0...klods-ruby/v1.7.0) (2026-06-29)
 
 
