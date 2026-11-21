@@ -37,8 +37,8 @@ lib/klods/
   components/
     alert.rb  avatar.rb  badge.rb  box.rb  breadcrumb.rb  button.rb
     card.rb   code.rb    details.rb  dl.rb  form.rb  list.rb
-    modal.rb  nav.rb     prose.rb    table.rb  tabs.rb  toast.rb
-    tooltip.rb
+    modal.rb  nav.rb     prose.rb    status.rb table.rb  tabs.rb
+    toast.rb  tooltip.rb
 ```
 
 `Klods::Builders` includes all the modules and is the single include point for consumers.
