@@ -1,0 +1,24 @@
+# Opens pull requests when the gem's tools or the workflows' actions have new
+# versions. klods-ruby has no runtime dependencies, so none of these change the
+# published gem: they use chore(deps) commits, which release-please doesn't
+# release.
+version: 2
+updates:
+  # Development gems in klods.gemspec. Standard is pinned to an exact version
+  # (so CI and local lint use the same rules); "increase" moves that pin up.
+  - package-ecosystem: bundler
+    directory: /
+    schedule:
+      interval: weekly
+    versioning-strategy: increase
+    commit-message:
+      prefix: chore
+      include: scope
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope

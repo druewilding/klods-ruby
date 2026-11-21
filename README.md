@@ -162,6 +162,10 @@ badge({variant: "success"}, "Done")
 badge({variant: "danger"}, "!")
 badge({variant: "accent"}, "New")
 
+status("Offline")                               # span.klods-status: a dot beside text
+status({variant: "success"}, "Online")
+status({variant: "success", pulse: true, role: "status"}, "Your turn")
+
 alert("Something went wrong.")
 alert({variant: "info"}, "FYI")
 alert({variant: "success"}, "Saved.")
