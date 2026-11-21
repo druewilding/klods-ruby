@@ -166,6 +166,10 @@ status("Offline")                               # span.klods-status: a dot besid
 status({variant: "success"}, "Online")
 status({variant: "success", pulse: true, role: "status"}, "Your turn")
 
+segmented({name: "theme", label: "Theme", value: "auto",   # radio buttons drawn as one pill
+           options: [{label: "Auto", value: "auto"}, {label: "Light", value: "light"}, {label: "Dark", value: "dark"}]})
+segmented({name: "view", "aria-labelledby": "view-label", options: ["Day", "Week", "Month"]})
+
 alert("Something went wrong.")
 alert({variant: "info"}, "FYI")
 alert({variant: "success"}, "Saved.")

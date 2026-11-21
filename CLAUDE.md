@@ -37,7 +37,7 @@ lib/klods/
   components/
     alert.rb  avatar.rb  badge.rb  box.rb  breadcrumb.rb  button.rb
     card.rb   code.rb    details.rb  dl.rb  form.rb  list.rb
-    modal.rb  nav.rb     prose.rb    status.rb table.rb  tabs.rb
+    modal.rb  nav.rb     prose.rb    segmented.rb status.rb table.rb  tabs.rb
     toast.rb  tooltip.rb
 ```
 
@@ -67,7 +67,7 @@ end
 - **`breadcrumbs(crumbs, attrs)`** — positional signature; no block.
 - **`toast_trigger`**, **`clear_toasts_trigger`** — fixed widget structure; no block needed.
 - **`modal_close`** — leaf button; no children concept.
-- **`input`**, **`checkbox`**, **`radio`**, **`radio_group`**, **`switch_input`** — form leaf elements.
+- **`input`**, **`checkbox`**, **`radio`**, **`radio_group`**, **`switch_input`**, **`segmented`** — form leaf elements.
 - **`sidebar_toggle`**, **`text`** — layout leaf elements.
 - **`push`**, **`fill`** — have `&block` in case someone wants to put content inside, but are normally used as spacers with no children.
 
