@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.8.0...klods-ruby/v1.9.0) (2026-11-21)
+
+
+### Features
+
+* Add a segmented control builder: radio buttons drawn as one pill ([#32](https://github.com/druewilding/klods-ruby/issues/32)) ([dae9400](https://github.com/druewilding/klods-ruby/commit/dae940024e2c4c86c02dc5691752e6c4d9e49c09))
+
 ## [1.8.0](https://github.com/druewilding/klods-ruby/compare/klods-ruby/v1.7.0...klods-ruby/v1.8.0) (2026-11-21)
 
 
